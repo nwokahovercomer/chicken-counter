@@ -1,0 +1,17 @@
+version: 2
+updates:
+  # CI actions and docs tooling get a monthly PR; the docs generator is pre-1.0 and pinned.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: monthly
+  - package-ecosystem: npm
+    directory: /tools
+    schedule:
+      interval: monthly
+  # Deliberately NOT watching /app: Expo pins compatible package versions per SDK.
+  # Upgrade the app with `npx expo install --fix`, never by bumping packages one at a time.

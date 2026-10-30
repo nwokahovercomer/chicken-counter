@@ -1,0 +1,81 @@
+openapi: 3.1.0
+info:
+  title: Chicken Counter proxy
+  version: 1.1.0
+  description: >
+    Stateless proxy in front of a Roboflow object-detection model. Keeps the model API key
+    off the phone and returns the chicken count with box coordinates.
+servers:
+  - url: https://YOUR-PROXY.workers.dev
+    description: The operator's Cloudflare Worker (private)
+paths:
+  /:
+    post:
+      summary: Detect chickens in one image
+      operationId: detectChickens
+      security:
+        - AppToken: []
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: The JPEG image as a raw base64 string (at most 8 MB of text).
+      responses:
+        "200":
+          description: Detections at or above the configured confidence threshold.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DetectResponse"
+        "400":
+          $ref: "#/components/responses/Error"
+        "401":
+          $ref: "#/components/responses/Error"
+        "405":
+          $ref: "#/components/responses/Error"
+        "413":
+          $ref: "#/components/responses/Error"
+        "502":
+          $ref: "#/components/responses/Error"
+components:
+  securitySchemes:
+    AppToken:
+      type: apiKey
+      in: header
+      name: X-App-Token
+  responses:
+    Error:
+      description: Request rejected or upstream failure.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+  schemas:
+    Box:
+      type: object
+      required: [x, y, width, height, confidence]
+      properties:
+        x: { type: number, description: Box centre, pixels of the image the model received }
+        y: { type: number, description: Box centre, pixels of the image the model received }
+        width: { type: number }
+        height: { type: number }
+        confidence: { type: number, minimum: 0, maximum: 1 }
+    DetectResponse:
+      type: object
+      required: [count, detections, boxes]
+      properties:
+        count: { type: integer, minimum: 0, description: Detections at or above the threshold }
+        detections: { type: integer, minimum: 0, description: Detections returned before thresholding }
+        imageWidth: { type: [integer, "null"] }
+        imageHeight: { type: [integer, "null"] }
+        boxes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Box"
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error: { type: string }

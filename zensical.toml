@@ -1,0 +1,101 @@
+# Site configuration for the documentation (built with Zensical).
+# Format reference: https://zensical.org/docs/setup/basics/
+
+[project]
+site_name = "Chicken Counter"
+site_description = "Human-verified poultry counting on Android: computer vision with a person in the loop."
+site_author = "Overcomer C. Nwokah"
+site_url = "https://nwokahovercomer.github.io/chicken-counter/"
+repo_url = "https://github.com/nwokahovercomer/chicken-counter"
+repo_name = "chicken-counter"
+edit_uri = "edit/main/docs/"
+copyright = "Copyright &copy; 2026 Overcomer C. Nwokah"
+
+# Every page under docs/ must appear here: tools/check_docs.py fails on orphans.
+nav = [
+  { "Home" = "index.md" },
+  { "Overview" = [
+    { "Problem and goals" = "overview/problem-and-goals.md" },
+    { "Requirements and traceability" = "overview/requirements.md" },
+    { "User guide" = "overview/user-guide.md" },
+  ] },
+  { "Architecture" = [
+    { "System overview" = "architecture/system-overview.md" },
+    { "Data flow" = "architecture/data-flow.md" },
+    { "Proxy API reference" = "architecture/api-reference.md" },
+    { "Security and privacy" = "architecture/security-and-privacy.md" },
+  ] },
+  { "Engineering" = [
+    { "Setup and build" = "engineering/dev-setup-and-build.md" },
+    { "Testing" = "engineering/testing.md" },
+    { "Distribution" = "engineering/distribution.md" },
+    { "Operations runbook" = "engineering/operations-runbook.md" },
+  ] },
+  { "Decisions" = [
+    { "Decision log" = "decisions/index.md" },
+    { "0001 Expo for the Android app" = "decisions/0001-expo-react-native.md" },
+    { "0002 Proxy keeps the API key off the phone" = "decisions/0002-cloudflare-worker-proxy.md" },
+    { "0003 Direct REST with header auth" = "decisions/0003-direct-rest-header-auth.md" },
+    { "0004 Rounded-mean voting (superseded)" = "decisions/0004-rounded-mean-voting.md" },
+    { "0005 Human-in-the-loop correction" = "decisions/0005-human-in-the-loop-correction.md" },
+    { "0006 Private APK distribution" = "decisions/0006-private-apk-distribution.md" },
+    { "0007 Store counts, never photos" = "decisions/0007-persist-counts-only.md" },
+    { "0008 Agile docs-as-code" = "decisions/0008-agile-docs-as-code.md" },
+    { "Template" = "decisions/template.md" },
+  ] },
+  { "Project" = [
+    { "History" = "project/history.md" },
+    { "Roadmap" = "project/roadmap.md" },
+    { "Risks (FMEA-style)" = "project/risks-fmea.md" },
+    { "Lessons learned" = "project/lessons-learned.md" },
+    { "Changelog" = "project/changelog.md" },
+  ] },
+  { "About these docs" = [
+    { "Waterfall or Agile?" = "meta/documentation-approach.md" },
+    { "Documentation system" = "meta/documentation-system.md" },
+  ] },
+]
+
+[project.theme]
+language = "en"
+features = [
+  "content.code.copy",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+[project.markdown_extensions]
+admonition = {}
+attr_list = {}
+def_list = {}
+md_in_html = {}
+tables = {}
+toc.permalink = true
+pymdownx.details = {}
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.tasklist.custom_checkbox = true

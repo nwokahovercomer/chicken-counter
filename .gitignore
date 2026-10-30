@@ -1,0 +1,33 @@
+# --- Secrets & credentials (never commit) ---
+.env
+.env.*
+*.pem
+*.key
+*.p8
+*.p12
+*.jks
+*.keystore
+.dev.vars
+app/src/config.ts        # real proxy URL + app token; use config.example.ts instead
+
+# --- Build output ---
+*.apk
+*.aab
+site/
+dist/
+web-build/
+.expo/
+.wrangler/
+
+# --- Dependencies ---
+node_modules/
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# --- Local noise ---
+*.log
+Console*.txt
+.DS_Store
+Thumbs.db

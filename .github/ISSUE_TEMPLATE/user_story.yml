@@ -1,0 +1,41 @@
+name: User story
+description: A unit of work in the backlog, written from the user's point of view
+labels: ["backlog"]
+body:
+  - type: input
+    id: as_a
+    attributes:
+      label: As a
+      placeholder: farm worker counting a pen
+    validations:
+      required: true
+  - type: textarea
+    id: i_want
+    attributes:
+      label: I want
+    validations:
+      required: true
+  - type: textarea
+    id: so_that
+    attributes:
+      label: So that
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Testable statements. These become rows in the test plan.
+      placeholder: "- [ ] Given ... when ... then ..."
+    validations:
+      required: true
+  - type: input
+    id: requirement
+    attributes:
+      label: Requirement ID (if any)
+      placeholder: FR-09
+  - type: textarea
+    id: docs_impact
+    attributes:
+      label: Docs impact
+      description: Which pages change if this ships?

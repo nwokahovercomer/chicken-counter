@@ -1,0 +1,2 @@
+# Pre-1.0 tool: pin it, and let Dependabot propose bumps (see .github/dependabot.yml).
+zensical==0.0.73
