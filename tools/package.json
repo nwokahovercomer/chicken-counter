@@ -5,6 +5,6 @@
   "description": "Validators used by CI. Not part of the app.",
   "dependencies": {
     "jsdom": "^26.0.0",
-    "mermaid": "^11.0.0"
+    "mermaid": "^12.2.0"
   }
 }
